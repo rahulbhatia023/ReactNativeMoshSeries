@@ -1,11 +1,10 @@
 import React from "react";
-import { StyleSheet, FlatList, View } from "react-native";
-import Screen from "../components/Screen";
-import ListItem from "../components/ListItem";
+import { StyleSheet, View, FlatList } from "react-native";
 
+import Screen from "../components/Screen";
+import { ListItem, ListItemSeparator } from "../components/lists";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
-import ListItemSeparator from "../components/ListItemSeparator";
 
 const menuItems = [
   {
@@ -24,7 +23,7 @@ const menuItems = [
   },
 ];
 
-export default function AccountScreen() {
+function AccountScreen(props) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -34,7 +33,7 @@ export default function AccountScreen() {
           image={require("../assets/mosh.jpg")}
         />
       </View>
-      <View>
+      <View style={styles.container}>
         <FlatList
           data={menuItems}
           keyExtractor={(menuItem) => menuItem.title}
@@ -42,7 +41,7 @@ export default function AccountScreen() {
           renderItem={({ item }) => (
             <ListItem
               title={item.title}
-              ImageComponent={
+              IconComponent={
                 <Icon
                   name={item.icon.name}
                   backgroundColor={item.icon.backgroundColor}
@@ -54,7 +53,7 @@ export default function AccountScreen() {
       </View>
       <ListItem
         title="Log Out"
-        ImageComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+        IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
       />
     </Screen>
   );
@@ -68,3 +67,5 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
+
+export default AccountScreen;
